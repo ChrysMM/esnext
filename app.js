@@ -50,25 +50,138 @@ const otherCityId = "3";
         afficher(parisId, nycId, otherCityId);
 
         class Trip {
-            constructor(id, name, imageUrl, _price){
+            constructor(id, name, imageUrl, price){
                 this.id = id;
                 this.name = name;
                 this.imageUrl= imageUrl
-                this._price = _price
+                this._price = price
             }
             toString() {
                 return this.id + '' + this.name + '' + this.imageUrl + '' + this._price;
            }
-           get _price(){
-               return this._price
-           };
-           set _price(){
+           get price(){
                return this._price
            }
-        }
+           set price(price){
+                this._price = price
+           }
 
-        let parisTrip = new Trip('paris', 'Paris', 'img/paris.jpg', '100');
+            
+            set id(monId) {
+            this._id = monId
+            }
+
+     
+            get id() {
+            return this._id
+            }
+
+     
+            set name(monName) {
+            this._name = monName
+            }
+
+     
+            get name() {
+            return this._name
+            }
+
+     
+            set imageUrl(monImageUrl) {
+            this._imageUrl = monImageUrl
+            }
+
+     
+            get imageUrl() {
+            return this._imageUrl
+            }
+
+        static getDefaultTrip() {
+
+            return new Trip ( 'rio-de-Janeiro',
+            'Rio de Janeiro',
+            'img/rio-de-janeiro.jpg')
+               
+            
+        }
+    
+    }
+    
+        
+
+        let parisTrip = new Trip('paris', 'Paris', 'img/paris.jpg');
+        const defaultTrip = Trip.getDefaultTrip();
+        parisTrip.price = 100;
+ 
+
         console.log(parisTrip)
         console.log(parisTrip.name)
+        console.log(parisTrip.toString());
+
+        console.log(defaultTrip.toString());
 
 
+// Heritage 
+
+class FreeTrip extends Trip {
+    constructor(id, name, imageUrl, price) {
+        super(id, name, imageUrl);
+        this.price = 0;
+    }
+
+}
+
+ 
+const freeTrip = new FreeTrip('nantes', 'Nantes', 'img/nantes.jpg')
+
+console.log(freeTrip.toString());
+
+//Promesses
+class TripService {
+    constructor() {
+    // TODO Set of 3 trips
+    //
+    // new Trip('paris', 'Paris', 'img/paris.jpg')
+    // new Trip('nantes', 'Nantes', 'img/nantes.jpg')
+    // new Trip('rio-de-janeiro', 'Rio de Janeiro', 'img/rio-de-janeiro.jpg')
+    }
+    findByName(tripName) {
+    return new Promise((resolve, reject) => {
+    setTimeout( () => {
+    // ici l'exécution du code est asynchrone
+    // TODO utiliser resolve et reject en fonction du résultat de la
+    recherche
+    }, 2000)
+    });
+    }
+    }
+    class PriceService {
+    constructor() {
+    // TODO Map of 2 trips
+   
+    
+    // 'paris' --> price == 100
+    let p1 = {id: 'paris', price: '100'};
+    // 'rio-de-janeiro' --> price == 800)
+    let p2 = {id: 'rio-de-janeiro', price: '800'};
+
+    // créer
+    let priceServices = new Map();
+
+    // alimenter
+    priceServices.set(1, p1);
+    priceServices.set(2, p2);
+    // no price for 'nantes'
+    }
+
+    findPriceByTripId(tripId) {
+    return new Promise((resolve, reject) => { 
+    setTimeout( (resolve, ms) => {
+    // ici l'exécution du code est asynchrone
+    // TODO utiliser resolve et reject en fonction du résultat de
+    //la recherche
+    }, 2000)
+    });
+    }
+    }
+    
