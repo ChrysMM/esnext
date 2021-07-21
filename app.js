@@ -185,13 +185,14 @@ class TripService {
     this.mapPriceTrip = new Map();
 
     // alimenter
-   
-    this.mapPriceTrip.set('paris', 100);
-    this.mapPriceTrip.set('rio-de-janeiro', 800);
+     
+    this.mapPriceTrip.set(1,new Trip('paris', 'Paris','' , 100));
+    this.mapPriceTrip.set(2,new Trip('rio-de-janeiro', 'Rio-de-janeiro','', 800));
    
 
     // no price for 'nantes'
-    this.mapPriceTrip.set('nantes');
+    this.mapPriceTrip.set(3,new Trip('nantes', 'Nantes','', 0));
+    console.log(this.mapPriceTrip)
     }
 
     findPriceByTripId(tripId) {
@@ -204,7 +205,8 @@ class TripService {
 
     let resultPrice = null;
                 this.mapPriceTrip.forEach(p => {
-                    if(p.price == tripPrice) {
+                    console.log(p);
+                    if(p._price == tripId) {
                         resultPrice = p;
                     }
                 });
